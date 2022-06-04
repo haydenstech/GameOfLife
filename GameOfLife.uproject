@@ -1,0 +1,13 @@
+{
+	"FileVersion": 3,
+	"EngineAssociation": "{63338C8B-4552-3E7B-9478-D2AFEE76EED4}",
+	"Category": "",
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "GameOfLife",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
