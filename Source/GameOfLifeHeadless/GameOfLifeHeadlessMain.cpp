@@ -17,11 +17,20 @@ INT32_MAIN_INT32_ARGC_TCHAR_ARGV()
 		return -1;
 	}
 
-	TUniquePtr<GameOfLifeCore> test1 = MakeUnique<GameOfLifeCore>();
-	
-	test1->SayHello();
+	TUniquePtr<GameOfLifeCore> GameOfLife = MakeUnique<GameOfLifeCore>();
 
-	test1.Release();
+	FString FileName = FString("Test.life");
+
+	if(GameOfLife->LoadGameStateFromFile(FString("C:/dev/unreal-projects/game-of-life/Patterns/" + FileName)))
+	{
+		RequestEngineExit(TEXT("Failed to load Game Of Life from file"));
+	}
+
+	GameOfLife->PrintGameStateToLog();
+	
+	GameOfLife->SaveGameStateToFile(FString("C:/dev/unreal-projects/game-of-life/Patterns/" + FileName));
+	
+	GameOfLife.Release();
 	
 	RequestEngineExit(TEXT("DcPluginHeadless Main Exit"));
 	FEngineLoop::AppPreExit();

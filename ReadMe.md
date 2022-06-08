@@ -24,6 +24,10 @@ Maximum speed of any lifeform is C/2
 - Written on UE4.27, Because it's what I've been using for the majority of the last several years of dev work, I've recently setup several projects using it, and to the best of my knowledge Unreal Engine is the platform that Valorant is developed on, so transferrable skills?
 - I'm using [this plugin](https://github.com/slowburn-dev/site-gists/tree/main/DcPlugin) to use a headless UE client target. To start with will not be targetting visuals as I have limited time.
 
+### Notes:
+- Wonder if there would be a way to just use sets instead of multidimensional arrays for iterating game state, sets would hold all of the live cells, and only cells that have live neighbors can become active...
+- Perhaps have an active and inactive set pooL? hmmm... would be more difficult to multithread however.
+
 ### Build + Run headless:
 ```
 # build headless target
@@ -35,7 +39,7 @@ C:\UnrealEngine\Engine\Binaries\DotNET\UnrealBuildTool -project="%CD%/GameOfLife
 
 ## To Do:
 - [x] Get a headless target setup and building.
-- [ ] Setup reading from / saving to files using Life 1.06 format.
+- [x] Setup reading from / saving to files using Life 1.06 format.
 - [ ] Get basic Game of Life functionality working without any major optimisations (Step 1 so we're working up froma solid foundation) Should use 2 arrays to swap state from one to another.
 - [x] Setup some basic unit tests, should load a handful of patterns and have some expected output to check against (And ensure nothing crashes :P).
 - [ ] Use a grid based system to allow us to allocate working areas without having to actually handle the entire int64 working space.

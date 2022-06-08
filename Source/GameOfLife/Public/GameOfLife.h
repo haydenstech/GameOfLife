@@ -3,6 +3,10 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+
+/**
+ * This is not really used at the moment, but the idea would be to expose GOLCore functionality to BP / UE at large
+ */ 
 class FGameOfLife : public IModuleInterface
 {
 public:

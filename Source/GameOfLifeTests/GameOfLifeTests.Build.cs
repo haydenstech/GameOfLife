@@ -15,6 +15,7 @@ public class GameOfLifeTests : ModuleRules
 			new string[] {
 				"Core",
 				"CoreUObject",
+				"GameOfLifeCore"
 			});
 	}
 }

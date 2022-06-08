@@ -9,6 +9,6 @@ public class GameOfLifeEditorTarget : TargetRules
 	{
 		Type = TargetType.Editor;
 		DefaultBuildSettings = BuildSettingsVersion.V2;
-		ExtraModuleNames.AddRange( new string[] { "GameOfLife" } );
+		ExtraModuleNames.AddRange( new string[] { "GameOfLife", "GameOfLifeTests" } );
 	}
 }

@@ -14,7 +14,8 @@ public class GameOfLifeCore : ModuleRules
         PublicDependencyModuleNames.AddRange(
 			new string[] {
 			"Core",
-			"CoreUObject",
+			"CoreUObject", 
+			"GeometricObjects",
 		});
 	}
 }

@@ -3,7 +3,6 @@
 void FGameOfLife::StartupModule()
 {
 	IModuleInterface::StartupModule();
-	UE_LOG(LogTemp, Display, TEXT("Hello from GOL Module startup"));
 }
 
 void FGameOfLife::ShutdownModule()
