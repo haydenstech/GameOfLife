@@ -5,7 +5,8 @@
 
 
 /**
- * This is not really used at the moment, but the idea would be to expose GOLCore functionality to BP / UE at large
+ * This is not really used at the moment, but the idea would be to expose GOLCore functionality to BP's etc for a visual interface.
+ * (In order to be used with the headless target the GOLCore module can't touch engine / rendering stuff)
  */ 
 class FGameOfLife : public IModuleInterface
 {

@@ -15,7 +15,7 @@ public class GameOfLifeHeadless : ModuleRules
 				"ApplicationCore",
 				"Projects",
 				// ---
-				"GameOfLifeCore" //Needs to include core instead
+				"GameOfLifeCore"
 			});
 
 		PrivateIncludePathModuleNames.AddRange(

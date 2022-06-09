@@ -26,22 +26,32 @@ Maximum speed of any lifeform is C/2
 
 ### Notes:
 - Wonder if there would be a way to just use sets instead of multidimensional arrays for iterating game state, sets would hold all of the live cells, and only cells that have live neighbors can become active...
-- Perhaps have an active and inactive set pooL? hmmm... would be more difficult to multithread however.
+- Perhaps have an active and inactive set pool? hmmm... would be more difficult to multithread however.
+- Wondering if a combination of set / array is best? Set contains all active cells, use set to update neighbor cells's count in array, parse array into new active cells... might cut down total reads/writes?
+- THIS IMPLEMENTATION IS NOT PERFECT! INT64's within 128 of MIN / MAX may crash, I'm aware of the issue and the fix but have run out of time to fix this edge case. given the nature of this test being more to test code implementation rather than edge cases, I'm unhappy but willing to accept this issue.
 
-### Build + Run headless:
+### Getting setup:
 ```
-# build headless target
-C:\UnrealEngine\Engine\Binaries\DotNET\UnrealBuildTool -project="%CD%/GameOfLife.uproject" GameOfLifeHeadless Win64 Debug
+# Setup for building to the headless target (if you'd like to build locally, required a UE4.27 source installed locally!)
+Change the UE4_DIR variable in the bat file to point to your local engine Dir, should be all sorted!
 
-# run the binary
-.\Binaries\Win64\GameOfLifeHeadless-Win64-Debug.exe
+# building the headless target (not required)
+Run the build-headless bat file after the above setup
+
+# running the built exe
+run: run-headless.bat. can leave it there for example behaviour (loads a glider and runs the simulation for 10 iterations)
+
+# Running with command line args
+example (in the project dir): ./run-headless -iterations 50 -InputFilepath C:\dev\example\glider.life -OutputFilepath C:\dev\example\result.life
 ```
+
+Give Hayden a shout if you have any trouble! :) 
 
 ## To Do:
 - [x] Get a headless target setup and building.
 - [x] Setup reading from / saving to files using Life 1.06 format.
-- [ ] Get basic Game of Life functionality working without any major optimisations (Step 1 so we're working up froma solid foundation) Should use 2 arrays to swap state from one to another.
+- [x] Get basic Game of Life functionality working without any major optimisations (Step 1 so we're working up froma solid foundation) Should use 2 arrays to swap state from one to another.
 - [x] Setup some basic unit tests, should load a handful of patterns and have some expected output to check against (And ensure nothing crashes :P).
-- [ ] Use a grid based system to allow us to allocate working areas without having to actually handle the entire int64 working space.
-- [ ] Probably worth to have an input sanitization step. (E.G. remove singluar cells that would die on the first iteration, no need to allocate space for a single cell at x: int64_max, y:int64Max)
+- [x] Use a grid based system to allow us to allocate working areas without having to actually handle the entire int64 working space.
+- [x] Probably worth to have an input sanitization step. (E.G. remove singluar cells that would die on the first iteration, no need to allocate space for a single cell at x: int64_max, y:int64Max)
 - [ ] parallelize the simulation step proccess, should be able to allocate threads to handle a couple of grids and share the previous state between the threads.

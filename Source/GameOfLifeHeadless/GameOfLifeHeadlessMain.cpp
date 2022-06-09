@@ -1,5 +1,4 @@
 ﻿#include "CoreMinimal.h"
-#include "Misc/CommandLine.h"
 #include "Runtime/Launch/Public/RequiredProgramMainCPPInclude.h"
 
 #include "stdio.h"
@@ -19,20 +18,46 @@ INT32_MAIN_INT32_ARGC_TCHAR_ARGV()
 
 	TUniquePtr<GameOfLifeCore> GameOfLife = MakeUnique<GameOfLifeCore>();
 
-	FString FileName = FString("Test.life");
+	int Iterations = 10;
+	
+	FString InputFilePath = FString("../../Patterns/Glider.life");
+	FString OutputFilePath = FString("../../Patterns/Result.life");
 
-	if(GameOfLife->LoadGameStateFromFile(FString("C:/dev/unreal-projects/game-of-life/Patterns/" + FileName)))
+	//Fetch command line arg options
+	FString CmdInputFilePath;
+	if (FParse::Value(FCommandLine::Get(), TEXT("InputFilepath"), CmdInputFilePath)) 
 	{
-		RequestEngineExit(TEXT("Failed to load Game Of Life from file"));
+		InputFilePath = CmdInputFilePath;
+	}
+	
+	FString CmdOutputFilePath;
+	if (FParse::Value(FCommandLine::Get(), TEXT("OutputFilepath"), CmdOutputFilePath)) 
+	{
+		OutputFilePath = CmdOutputFilePath;
 	}
 
-	GameOfLife->PrintGameStateToLog();
+	FString IterationsString;
+	if (FParse::Value(FCommandLine::Get(), TEXT("Iterations"), IterationsString)) 
+	{
+		Iterations = FCString::Atoi(*IterationsString);
+	}
+
+	if(!GameOfLife->LoadGameStateFromFile(InputFilePath))
+	{
+		RequestEngineExit(TEXT("Failed to load Game Of Life state from file"));
+		FEngineLoop::AppPreExit();
+		FEngineLoop::AppExit();
+
+		return 0;
+	}
+
+	GameOfLife->IterateSimulationState(Iterations);
 	
-	GameOfLife->SaveGameStateToFile(FString("C:/dev/unreal-projects/game-of-life/Patterns/" + FileName));
+	GameOfLife->SaveGameStateToFile(OutputFilePath);
 	
-	GameOfLife.Release();
+	GameOfLife.Reset();
 	
-	RequestEngineExit(TEXT("DcPluginHeadless Main Exit"));
+	RequestEngineExit(TEXT("GameOfLifeHeadless Main Exit"));
 	FEngineLoop::AppPreExit();
 	FEngineLoop::AppExit();
 
