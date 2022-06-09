@@ -1,0 +1,47 @@
+{
+	"TargetName": "GameOfLifeHeadless",
+	"Platform": "Win64",
+	"Configuration": "Debug",
+	"TargetType": "Program",
+	"Architecture": "",
+	"Project": "../../GameOfLife.uproject",
+	"Launch": "$(ProjectDir)/Binaries/Win64/GameOfLifeHeadless-Win64-Debug.exe",
+	"Version": 
+	{
+		"MajorVersion": 4,
+		"MinorVersion": 27,
+		"PatchVersion": 2,
+		"Changelist": 0,
+		"CompatibleChangelist": 17155196,
+		"IsLicenseeVersion": 0,
+		"IsPromotedBuild": 0,
+		"BranchName": "++UE4+Release-4.27",
+		"BuildId": "d4953326-53f9-424f-9a2c-bfb001ae96d2"
+	},
+	"BuildProducts": [
+		{
+			"Path": "$(ProjectDir)/Binaries/Win64/GameOfLifeHeadless-Win64-Debug.exe",
+			"Type": "Executable"
+		},
+		{
+			"Path": "$(ProjectDir)/Binaries/Win64/GameOfLifeHeadless-Win64-Debug.pdb",
+			"Type": "SymbolFile"
+		}
+	],
+	"RuntimeDependencies": [
+		{
+			"Path": "$(ProjectDir)/GameOfLife.uproject",
+			"Type": "UFS"
+		},
+		{
+			"Path": "$(EngineDir)/Binaries/ThirdParty/DbgHelp/dbghelp.dll",
+			"Type": "NonUFS"
+		}
+	],
+	"AdditionalProperties": [
+		{
+			"Name": "SDK",
+			"Value": "Not Applicable"
+		}
+	]
+}
