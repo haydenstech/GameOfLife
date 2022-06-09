@@ -47,6 +47,8 @@ example (in the project dir): ./run-headless -iterations 50 -InputFilepath C:\de
 
 Give Hayden a shout if you have any trouble! :) 
 
+A great writeup if you get stuck: https://slowburn.dev/blog/headless-fun-unreal-engine/
+
 ## To Do:
 - [x] Get a headless target setup and building.
 - [x] Setup reading from / saving to files using Life 1.06 format.
